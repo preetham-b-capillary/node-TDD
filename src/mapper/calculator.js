@@ -1,21 +1,20 @@
 const CONSTANTS = require("../const");
 
-
 function calculator(operation, ...values) {
   switch (operation) {
     case CONSTANTS.CALCULATOR_OPERATIONS.ADDITION: {
       return values.reduce((sum, value) => {
-        return sum + value
+        return sum + value;
       });
     }
     case CONSTANTS.CALCULATOR_OPERATIONS.SUBTRACTION: {
       return values.reduce((sum, value) => {
-        return sum - value
+        return sum - value;
       });
     }
     case CONSTANTS.CALCULATOR_OPERATIONS.MULTIPLICATION: {
       return values.reduce((sum, value) => {
-        return sum * value
+        return sum * value;
       });
     }
     case CONSTANTS.CALCULATOR_OPERATIONS.DIVISION: {
@@ -23,8 +22,10 @@ function calculator(operation, ...values) {
     }
     default:
       console.log("Invalid operation ", operation);
+      // returning an error message
+      return "error!";
       break;
   }
-};
+}
 
 module.exports = calculator;
