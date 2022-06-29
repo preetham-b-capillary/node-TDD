@@ -19,7 +19,6 @@ function calculator(operation, ...values) {
       });
     }
     case CONSTANTS.CALCULATOR_OPERATIONS.DIVISION: {
-      //TODO dividedByError
       return values[1] / values[0];
     }
     default:
