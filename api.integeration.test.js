@@ -1,9 +1,12 @@
 const request = require("supertest");
 const server = require("./index");
 const mockAxios  = require("axios");
+const userMid = require('./src/routes/middlewares/user.middleware');
 
  jest.mock("axios");
- jest.mock("./src/routes/middlewares/user.middleware",()=> jest.fn((req,res,next)=> next()));
+//  //for middleware
+//  jest.mock("./src/routes/middlewares/user.middleware",()=> 
+//             jest.fn((req,res,next)=> next()));
 
 describe("GET jokes",() => {
 
@@ -22,9 +25,15 @@ describe("GET jokes",() => {
         expect(response.text).toBe("Milind");
     })
 
-    it("check for middleware function",async() =>{
-        const reponse = await request(server).get('/test/securedRandomJoke');
+    it("check for random secured jokes",async() =>{
+        mockAxios.mockImplementation(() => Promise.resolve({ data: {"joke" : "Milind","error":false} }));
+        const reponse = await request(server).get('/test/securedRandomJoke').query({isSuperUser : 1});
         expect(reponse.statusCode).toBe(200);
+
+
+        //for unauthorized user.
+        const result = await request(server).get('/test/securedRandomJoke').query({isSuperUser : 2});
+        expect(result.text).toBe('Access Denied');
     }) 
 
 

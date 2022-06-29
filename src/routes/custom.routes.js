@@ -28,7 +28,8 @@ router.get('/getRandomJoke', async (req, res) => {
   while writing it bypass the middleware which checks user access,
   bypass using mock, dont pass query param in route 
 */
-router.get('/securedRandomJoke', checkIfUserHasAccess, async (req, res) => {
+
+router.get('/securedRandomJoke', checkIfUserHasAccess, async (req, res,next) => {
   const result = await getRandomJoke();
   res.send(result);
 });
