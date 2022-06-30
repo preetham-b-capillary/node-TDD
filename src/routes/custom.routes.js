@@ -2,7 +2,7 @@ const express = require("express");
 const { getRandomJoke } = require("../helpers/myHelper");
 const calculator = require("../mapper/calculator");
 const { checkIfUserHasAccess } = require("./middlewares/user.middleware");
-const router = express.Router();
+const router = express();
 
 router.get("/calculator", function (req, res) {
   const operation = req.query.operation;

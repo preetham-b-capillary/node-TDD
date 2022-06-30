@@ -1,7 +1,8 @@
 exports.checkIfUserHasAccess = (req, res, next) => {
-  if (req.query.isSuperUser == 1) {
+  //console.log("#####result",req.query);
+  if (req.query.isSuperUser == 'true') {
     next();
   } else {
-    res.send('Access Denied');
+    res.status(403).send("Access Denied");
   }
 };
