@@ -23,7 +23,8 @@ function calculator(operation, ...values) {
     }
     default:
       console.log("Invalid operation ", operation);
-      break;
+      return "Invalid operations";  
+    break;
   }
 };
 

@@ -1,5 +1,5 @@
 module.exports = {
-  rootDir: '../../',
+  rootDir: './',
   verbose: true,
   moduleFileExtensions: ['js'],
   moduleDirectories: ['node_modules', 'src'],
@@ -13,6 +13,5 @@ module.exports = {
   clearMocks: true,
   resetMocks: true,
   transformIgnorePatterns: [],
-  testEnvironment: 'jsdom',
   testRegex: ['.integration.test.js'], //file consists of .integration.test.js, constants
 };
