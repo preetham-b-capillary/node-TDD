@@ -4,9 +4,6 @@ const mockAxios  = require("axios");
 const userMid = require('./src/routes/middlewares/user.middleware');
 
  jest.mock("axios");
-// //  //for middleware
-// jest.mock("./src/routes/middlewares/user.middleware",()=> 
-//             jest.fn((req,res,next)=> next()));
 
 describe("GET jokes",() => {
 
@@ -31,16 +28,8 @@ describe("GET jokes",() => {
         expect(reponse.statusCode).toBe(200);
 
 
-        // //for unauthorized user.
-        // const result = await request(server).get('/test/securedRandomJoke').query({isSuperUser : false});
-        // expect(result.text).toBe('Access Denied');
-    }) 
-
-    // for middlewares.
-    // it("check for middlewares",async() =>{
-    //     const reponse = await request(server).get('/test/securedRandomJoke');
-    //     expect(reponse.statusCode).toBe(403);
-    // })
-
-
+        //for unauthorized user.
+        const result = await request(server).get('/test/securedRandomJoke').query({isSuperUser : false});
+        expect(result.text).toBe('Access Denied');
+    })
 })

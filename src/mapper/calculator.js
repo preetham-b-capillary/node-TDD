@@ -19,7 +19,12 @@ function calculator(operation, ...values) {
       });
     }
     case CONSTANTS.CALCULATOR_OPERATIONS.DIVISION: {
-      return values[1] / values[0];
+      if(values[0] == 0){
+        return Infinity;
+      }
+      else{
+        return value[1]/value[0];
+      }
     }
     default:
       console.log("Invalid operation ", operation);

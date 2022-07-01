@@ -15,7 +15,7 @@ describe("Check whether operations is giving right answer or not",()=>{
     })
 
     it("checking the division",()=>{
-        expect(calculator('division',1,2)).toBe(2);
+        expect(calculator('division',0,2)).toBe(Infinity);
     })
 
 
