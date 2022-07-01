@@ -1,3 +1,4 @@
+const appRoutes = require('./src');
 const express = require('express');
 const app = express();
 
@@ -6,6 +7,8 @@ const morgan = require("morgan"); // JUST for logging response time
 
 app.use(helmet());
 app.use(morgan('dev'));
+
+app.use(appRoutes); // including index.js file of src, which includes all the routes
 
 app.get('/health-check', (req, res) => {
   res.sendStatus(200);
