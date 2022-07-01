@@ -18,6 +18,9 @@ describe('calculator testing',()=>{
     it("division check",()=>{
         expect(calculator('division',1,2)).toBe(2);
     })
+   it("checking the division",()=>{
+        expect(calculator('division',0,2)).toBe(Infinity);
+    })
 })
 
 describe('jokes API testing',()=>{
