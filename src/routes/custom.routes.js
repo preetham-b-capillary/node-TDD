@@ -19,6 +19,7 @@ router.get("/calculator", function (req, res) {
 */
 router.get('/getRandomJoke', async (req, res) => {
   const result = await getRandomJoke();
+  // console.log("result.....",result)
   res.send(result);
 });
 
