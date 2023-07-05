@@ -1,5 +1,5 @@
 module.exports = {
-  rootDir: '../../',
+  rootDir: "./",
   verbose: true,
   moduleFileExtensions: ['js'],
   moduleDirectories: ['node_modules', 'src'],
