@@ -7,8 +7,8 @@ jest.mock("../helpers/myHelper", () => {
   };
 });
 
-describe("Integration testcase for getRandomeJoke", () => {
-  test("Test getRandomeJoke route", async () => {
+describe("Integration testcase for getRandomJoke", () => {
+  test("Test getRandomJoke route", async () => {
     const res = await request(app)
       .get("/test/getRandomJoke")
       .query({ isSuperUser: 1 });

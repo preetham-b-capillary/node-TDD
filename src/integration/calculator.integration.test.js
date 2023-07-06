@@ -6,7 +6,6 @@ jest.mock("../mapper/calculator", () => {
 });
 
 describe("Integration testcase for Calculator", () => {
-//   jest.setTimeout(10000);
   test("Test Calculator", async () => {
     const res = await request(app)
       .get("/test/calculator")
