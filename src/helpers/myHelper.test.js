@@ -1,5 +1,5 @@
 const axios=require('axios');
-import { getRandomJoke } from './myHelper';
+const { getRandomJoke } =require('./myHelper');
 
 jest.mock("axios");
 
@@ -14,5 +14,10 @@ test('should get the correct response from the getRandomJoke', async () => {
   expect(axios).toHaveBeenCalledTimes(1);
   expect(result).toEqual(joke);
 })
-
+test('should get the null on incorrect response from the getRandomJoke', async () => {
+    axios.mockResolvedValueOnce({ data: { error: true } });
+    const result=await getRandomJoke();
+    expect(axios).toHaveBeenCalledTimes(1);
+    expect(result).toBeNull();
+  })
 })
