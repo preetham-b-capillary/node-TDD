@@ -3,15 +3,6 @@ const helper = require('./src/helpers/myHelper');
 const request = require("supertest");
 const axios = require('axios')
 
-/*   
-
-////  OLD CODE TO MOCK getRandomJoke()    
-
-jest.mock('./src/helpers/myHelper',()=>
-({getRandomJoke: ()=>"Hello"}));
-
-*/
-
 jest.mock('axios')      //mocking axios
 
 jest.mock('./src/mapper/calculator', () => () => 3);   //mocking calculator to return hardcoded 3
