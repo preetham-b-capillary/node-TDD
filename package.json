@@ -4,7 +4,10 @@
   "description": "TDD",
   "main": "index.js",
   "scripts": {
-    "test": "jest --config ./jest.config.js"
+    "test:clean": "rimraf ./reports",
+    "test:unit": "jest --config ./jest.config.js",
+    "test:integration": "jest --config ./jest.integration.config.js --runInBand",
+    "test": "npm run test:unit && npm run test:integration"
   },
   "repository": {
     "type": "git",
@@ -26,6 +29,7 @@
   },
   "devDependencies": {
     "jest": "^28.1.1",
+    "jest-environment-jsdom": "^29.6.0",
     "supertest": "^6.2.3"
   }
 }
