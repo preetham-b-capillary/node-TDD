@@ -17,7 +17,7 @@ app.get('/health-check', (req, res) => {
 app.get('/timestamp', (req, res) => {
   res.send({
     success: true,
-    currentEpouchTimeStamp: Math.round(new Date() / 1000)
+    currentEpochTimeStamp: Math.round(new Date() / 1000)
   });
 });
 
