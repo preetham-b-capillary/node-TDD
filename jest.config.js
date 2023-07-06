@@ -1,7 +1,8 @@
 module.exports = {
   verbose: true,
   rootDir: "./",
-  moduleFileExtensions: ["js"],
+  moduleFileExtensions: ["js", "test.js"],
+  modulePathIgnorePatterns: ["/mapperChecks/"],
   collectCoverage: true,
   coverageDirectory: "<rootDir>/reports/coverage",
   coveragePathIgnorePatterns: ["/node_modules/", "index.js"],
