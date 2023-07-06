@@ -1,8 +1,8 @@
 const request = require('supertest');
 const app = require('../../index');
 
-describe("health-check", () => {
-    test('returns 200', () => {
+describe("Testing /health-check route [IT]", () => {
+    test('should return 200', () => {
         request(app)
         .get('/health-check')
         .expect(200)

@@ -3,8 +3,8 @@ const app = require('../../index');
 const axios = require('axios');
 jest.mock('axios');
 
-describe('get /getRandomJoke', () => {
-    it('returns a joke from the API', async () => {
+describe('Testing /random-joke route [IT]', () => {
+    it('should return a joke from the API', async () => {
         axios.mockResolvedValue({
         data: {
             error: false,
@@ -17,7 +17,7 @@ describe('get /getRandomJoke', () => {
         expect(res.text).toEqual('Test Joke');
     });
 
-    it('returns no joke from the API', async () => {
+    it('should return no joke from the API', async () => {
         axios.mockResolvedValue({
         data: {
             error: true,
@@ -29,7 +29,7 @@ describe('get /getRandomJoke', () => {
         expect(res.text).toEqual("");
     });
 
-    it('handle axios error throw', async () => {
+    it('should handle axios error throw', async () => {
         axios.mockImplementation(() => {
             throw new Error('test Error');
         });
