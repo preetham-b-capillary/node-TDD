@@ -3,8 +3,8 @@ const axios = require("axios");
 
 jest.mock("axios");
 
-describe("getRandomJoke Test", () => {
-  test("Succesfull Axios get Request", async () => {
+describe("getRandomJoke Test [unit]", () => {
+  test("Should return Joke on succesfull axios get request", async () => {
     const response = {
       data: {
         error: false,
@@ -21,7 +21,7 @@ describe("getRandomJoke Test", () => {
     expect(data).toEqual(expected);
   });
 
-  test("Unsuccesfull Axios get Request", async () => {
+  test("Should return Null on unsuccesfull axios get request", async () => {
     axios.mockImplementationOnce(() => {
       throw new Error("Error!!");
     });
@@ -29,7 +29,7 @@ describe("getRandomJoke Test", () => {
     expect(await getRandomJoke()).toBeUndefined();
   });
 
-  test("Result is null", async () => {
+  test("Should return Null when axios request result is null", async () => {
     const response = null;
 
     axios.mockImplementationOnce(() => Promise.resolve(response));

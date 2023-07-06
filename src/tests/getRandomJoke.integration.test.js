@@ -1,38 +1,42 @@
 const request = require("supertest");
 const app = require("../../index.js");
+const { getRandomJoke } = require("../helpers/myHelper.js");
 
 jest.mock("../helpers/myHelper", () => {
   return {
-    getRandomJoke: () => "Debugging: Removing the needles from the haystack.",
+    ...jest.requireActual("../helpers/myHelper"),
+    getRandomJoke: jest.fn(),
   };
 });
 
-// jest.mock("../routes/middlewares/user.middleware.js", () => {
-//   return {
-//     checkIfUserHasAccess: (req, res, next) => next(),
-//   };
-// });
+describe("GetRandomJoke test [Integration]", () => {
+  test("Should return Joke on getRandomJoke request", async () => {
+    getRandomJoke.mockImplementationOnce(
+      () => "Debugging1: Removing the needles from the haystack."
+    );
 
-describe("GetRandomJoke Integration test", () => {
-  test("Test GetRandomJoke", async () => {
     const response = await request(app).get("/test/getRandomJoke");
 
     expect(response?.text).toBe(
-      "Debugging: Removing the needles from the haystack."
+      "Debugging1: Removing the needles from the haystack."
     );
   });
 
-  test("Test Secured GetRandomJoke with isSuperUser", async () => {
+  test("Should return Joke on Secured getRandomJoke request with isSuperUser", async () => {
+    getRandomJoke.mockImplementationOnce(
+      () => "Debugging2: Removing the needles from the haystack."
+    );
+
     const response = await request(app)
       .get("/test/securedRandomJoke")
       .query({ isSuperUser: 1 });
 
     expect(response?.text).toBe(
-      "Debugging: Removing the needles from the haystack."
+      "Debugging2: Removing the needles from the haystack."
     );
   });
 
-  test("Test Secured GetRandomJoke without isSuperUser", async () => {
+  test("Should return Access Denied on Secured getRandomJoke request without isSuperUser", async () => {
     const response = await request(app).get("/test/securedRandomJoke");
 
     expect(response?.text).toBe("Access Denied");
