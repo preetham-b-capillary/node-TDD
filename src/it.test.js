@@ -30,12 +30,12 @@ test('Should add 2 numbers for Addtion operation', () => {
         send : responseMock
     }
 
+    // Mock Calculator
     jest.mock('./mapper/calculator')
     const calculatorMock = jest.fn((operation, valueOne, valueTwo)=>{
         return valueOne + valueTwo
     })
     
     router.get('/calculator', (req, res) => {} )
-    // expect(calculator).toHaveBeenCalledWith(CONSTANTS.CALCULATOR_OPERATIONS.ADDITION, 2 ,3)
     expect(calculatorMock(CONSTANTS.CALCULATOR_OPERATIONS.ADDITION, 2, 3)).toBe(5)
 })
