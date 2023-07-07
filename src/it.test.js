@@ -30,12 +30,46 @@ test('Should add 2 numbers for Addtion operation', () => {
         send : responseMock
     }
 
-    // Mock Calculator
-    jest.mock('./mapper/calculator')
-    const calculatorMock = jest.fn((operation, valueOne, valueTwo)=>{
-        return valueOne + valueTwo
+    jest.mock('./mapper/calculator', () => {
+        return {
+          calculator: jest.fn((operation, valueOne, valueTwo)=>{
+                return valueOne + valueTwo
+            })
+        }
+      });
+
+    router.get('/calculator', (req, res) => {} )
+    expect(calculator(CONSTANTS.CALCULATOR_OPERATIONS.ADDITION, 2, 3)).toBe(5)
+})
+
+test('Subtract 2 numbers', () => {
+
+    // mock calculator module
+    jest.mock('././mapper/calculator', () => {
+        return {
+            calculator: jest.fn((operation, valueOne, valueTwo) => {
+                return valueOne + valueTwo
+            })
+        }
     })
     
-    router.get('/calculator', (req, res) => {} )
-    expect(calculatorMock(CONSTANTS.CALCULATOR_OPERATIONS.ADDITION, 2, 3)).toBe(5)
+    //mock req
+    const req = {
+        query: {
+            operation: CONSTANTS.CALCULATOR_OPERATIONS.SUBTRACTION,
+            valueOne: 2,
+            valueTwo: 3
+        }
+    }
+
+    //mock res
+    const res = {
+        send: (success, result)=>{}
+    }
+
+
+    router.get('/calculator', (req, res) => {})
+
+    expect(calculator(CONSTANTS.CALCULATOR_OPERATIONS.SUBTRACTION, 5, 5)).toBe(0)
+
 })
