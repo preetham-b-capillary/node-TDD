@@ -1,27 +1,31 @@
 const request = require("supertest");
 const app = require("../../index.js");
+const {getRandomJoke} = require('../helpers/myHelper')
 
 jest.mock("../helpers/myHelper", () => {
   return {
-    getRandomJoke: () => "Cool joke!!",
+    ...jest.requireActual("../helpers/myHelper"),
+    getRandomJoke: jest.fn(),
   };
 });
 
 describe("Integration testcase for getRandomJoke", () => {
   test("Test getRandomJoke route", async () => {
-    const res = await request(app)
-      .get("/test/getRandomJoke")
-      .query({ isSuperUser: 1 });
+    getRandomJoke.mockImplementationOnce(() => "Cool joke!!");
 
-    expect(res?.text).toBe("Cool joke!!");
+    const response = await request(app).get("/test/getRandomJoke");
+
+    expect(response?.text).toBe("Cool joke!!");
   });
 
   test("Test securedRandomJoke route with isSuperUser", async () => {
-    const res = await request(app)
+    getRandomJoke.mockImplementationOnce(() => "Not a good joke!");
+
+    const response = await request(app)
       .get("/test/securedRandomJoke")
       .query({ isSuperUser: 1 });
 
-    expect(res?.text).toBe("Cool joke!!");
+    expect(response?.text).toBe("Not a good joke!");
   });
 
   test("Test securedRandomJoke route without isSuperUser", async () => {
