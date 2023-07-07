@@ -8,7 +8,7 @@ test('For invalid operation', () => {
 
 //Negative TC
 test('For no input',  () => {
-    expect(calculator(CONSTANTS.CALCULATOR_OPERATIONS.ADDITION, ...[])).toBe([])
+    expect(calculator(CONSTANTS.CALCULATOR_OPERATIONS.ADDITION, [])).toEqual([])
 })
 
 //Positive TC
