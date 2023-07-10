@@ -33,7 +33,7 @@ test('Testing router to call calculator', async () => {
             return 'Mock return from calculator'
     })
 
-    const response = await request(app).get('/test/calculator');
+    const response = await request(app).get('/test/calculator').query({ operation: "addition", valueOne: 1, valueTwo: 2 });
     //console.log("=== response = ",response)
     // expect(response.status).toBe(200)
     expect(calculator).toHaveBeenCalledTimes(1)
